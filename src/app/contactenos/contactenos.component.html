@@ -1,15 +1,40 @@
-<form>
-  <div class="form-group">
-    <label for="name">Nombre:</label>
-    <input type="text" class="form-control" id="name">
+<div>
+    <h2>Diligencia tus datos</h2>
 
-    <label for="email">Email</label>
-    <input type="email" class="form-control" id="email">
+    <!--#f guarda una referencia al formulario como tal, para verificar si esta submitted y cosas asi-->
+    <form #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" novalidate>
+        <div class="form-group">
+          <label for="name">Nombre:</label>
+          <input type="text" class="form-control" id="name" #name="ngModel" name="name" [(ngModel)]="contactenosInfo.nombre" required >
 
-    <label for="name">Para que deseas contactarnos?</label>
-    <select name="" id="">
-      <option [value]="" selected disabled>Seleccione...</option>
-      <option *ngFor="let cat of contactenosOptions" value="cat">{{cat}}</option>
-    </select>
-  </div>
-</form>
+          <!-- se referencia a f y a name como variables del formulario-->
+          <div *ngIf="f.submitted && name.invalid" class="alert alert-danger">
+            <!--La variable que referencia el modelo posee todos los errores que aplican, como flags-->
+            <div>Name is required</div>
+          </div>
+        </div>
+      
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" #email="ngModel" name="email" [(ngModel)]="contactenosInfo.email" required email>
+            <div *ngIf="f.submitted && email.invalid" class="alert alert-danger">
+                <div *ngIf="email.errors.required">Email is required</div>
+                <div *ngIf="email.errors.email">Must be a valid email</div>
+            </div>  
+        </div>
+        
+        <div class="form-group">
+            <label for="selectcategory">Para que deseas contactarnos?</label>
+            <select style="margin-left: 10px" id="selectcategory" name="selectcategory" [(ngModel)]="contactenosInfo.tipoContacto" #selectcategory="ngModel" required>
+              <option [value]="" selected disabled>Seleccione...</option>
+              <option *ngFor="let cat of contactenosOptions" value="{{cat}}">{{cat}}</option>
+            </select>
+            <div *ngIf="f.submitted && selectcategory.invalid" class="alert alert-danger">
+                    <div *ngIf="selectcategory.errors.required">Must select an option</div>
+                </div>
+        </div>
+
+        <button type="submit" class="btn btn-dark">Enviar</button>
+    </form>
+      
+</div>

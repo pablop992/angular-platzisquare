@@ -1,8 +1,9 @@
 <div class="card">
-  <div class="card-body">
-    <h5 class="class-title">
-      {{lugar.name}} 
-    </h5>
-    <p class="card-text">{{lugar.description}}</p>
+  <div class="card-body" style="display: inline-block" [ngSwitch]="lugar.subscription">
+    <h5 class="class-title title-inline-block" > {{lugar.name}} </h5>
+      <span class="badge badge-warning" *ngSwitchCase="'GOLD'">GOLD</span>
+      <span class="badge badge-light" *ngSwitchCase="'FREE'">FREE</span>
+      <p class="card-text">{{lugar.description}}</p>
   </div>
+  
 </div>

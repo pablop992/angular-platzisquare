@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Contactenos } from '../model/contactenos'
+import { ContactenosService } from '../services/contactenos.service';
 
 @Component({
   selector: 'app-contactenos',
@@ -7,14 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactenosComponent implements OnInit {
 
+  contactenosInfo : any = {};
+
   contactenosOptions : Array<string> = [
     'Nuevos negocios',
     'Corregir informacion'
   ]
 
-  constructor() { }
+  constructor(private contactenosService : ContactenosService) { }
 
   ngOnInit() {
+  }
+
+  onSubmit(){
+    this.contactenosService.guardarContactenosInfo(this.contactenosInfo);
+    this.contactenosInfo = {};
   }
 
 }

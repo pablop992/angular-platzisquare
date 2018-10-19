@@ -4,20 +4,25 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LugaresComponent } from './lugares/lugares.component';
 import { DetalleComponent } from './detalle/detalle.component';
-import { RoutingModule } from './routing/routing.module';
 import { ContactenosComponent } from './contactenos/contactenos.component';
 import { LugaresService } from './services/lugares.service';
+import { RoutingModule } from './routing/routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ContactenosreactiveComponent } from './contactenosreactive/contactenosreactive.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LugaresComponent,
     DetalleComponent,
-    ContactenosComponent
+    ContactenosComponent,
+    ContactenosreactiveComponent
   ],
   imports: [
     BrowserModule,
-    RoutingModule
+    RoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     LugaresService
