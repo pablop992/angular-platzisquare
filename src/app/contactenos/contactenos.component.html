@@ -1,0 +1,15 @@
+<form>
+  <div class="form-group">
+    <label for="name">Nombre:</label>
+    <input type="text" class="form-control" id="name">
+
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email">
+
+    <label for="name">Para que deseas contactarnos?</label>
+    <select name="" id="">
+      <option [value]="" selected disabled>Seleccione...</option>
+      <option *ngFor="let cat of contactenosOptions" value="cat">{{cat}}</option>
+    </select>
+  </div>
+</form>
